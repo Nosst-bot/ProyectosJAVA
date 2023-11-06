@@ -1,0 +1,35 @@
+PRUEBA TÉCNICA PARA DESARROLLADOR BACKEND.
+
+DESCRIPCIÓN
+1. Desarrollar una API con tecnología java usando el Framework Sprigboot que consuma la api de Marvel cuya documentación
+ se encuentra en la página siguiente: https://developer.marvel.com/
+
+2. Se debe poder consumir la API de Marvel y guardar la información en un esquema de base de datos, preferible  MySQL.
+El esquema de base de datos debe poder almacenar toda la data necesaria para desarrollar los puntos 6 y 7
+
+
+3. Crear una API que suministre la siguiente información de Marvel:
+    Descripción:
+    1) Buscar a los personajes de Marvel por nombre, historietas y serie.
+    2) Obtener el listado de comic que tiene un personaje especifico.
+    3) Obtener la imagen y descripción de un personaje especifico.
+    4) Mostrar listas de comic completas
+    5) Mostrar comic filtrado por id
+    6) Mostrar las búsquedas que cualquier usuario haya hecho relacionadas a historietas.
+    7) Mostrar las búsquedas que un usuario especifico ha realizado
+
+
+4. Se debe levantar la documentación de la APIs construidas.
+5. Al finalizar el desarrollo se deberá comprimir el proyecto en un archivo zip y enviarlo al correo que se le indique
+
+
+REQUERIMIENTOS
+La API debe tener un medio y esquema de autenticación (utilizar Spring Security) que identifique que usuario está
+haciendo las búsquedas de información de Marvel.
+
+Los readme de las aplicaciones deben tener los scripts de base de datos, en los cuales se debe incluir la data inicial
+necesaria para poder ejecutar el primero uso de las APIs.
+
+Si se ha usado alguna otra tecnología de autenticación se debe documentar en el readme.
+TIEMPO DE EJEUCCION
+3 días

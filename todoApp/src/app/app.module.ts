@@ -11,6 +11,14 @@ import { ListTodosComponent } from './list-todos/list-todos.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoutComponent } from './logout/logout.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TodoComponent } from './todo/todo.component';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es'
+import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter-basic-auth.service';
+
+registerLocaleData(localeEs, 'es')
+
 
 @NgModule({
   declarations: [
@@ -21,14 +29,14 @@ import { LogoutComponent } from './logout/logout.component';
     ListTodosComponent,
     MenuComponent,
     FooterComponent,
-    LogoutComponent
+    LogoutComponent,
+    TodoComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBasicAuthService, multi: true},
+    { provide: LOCALE_ID, useValue: 'es'},
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

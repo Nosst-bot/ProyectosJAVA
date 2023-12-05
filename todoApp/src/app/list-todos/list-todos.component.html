@@ -1,19 +1,38 @@
 <h2>My Todo's</h2>
 
-<table class="table table-bordered todos">
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Target Date</th>
-      <th>Is Completed ?</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- for (Todo todo: todos) {} -->
-    <tr *ngFor="let todo of todos">
-      <td>{{ todo.description }}</td>
-      <td>{{ todo.targetDate | date | lowercase }}</td>
-      <td>{{ todo.done }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="alert alert-warning" *ngIf="message">{{ message }}</div>
+
+<div class="container">
+  <table class="table todos">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Target Date</th>
+        <th>Is Completed ?</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- for (Todo todo: todos) {} -->
+      <tr *ngFor="let todo of todos">
+        <td>{{ todo.description }}</td>
+        <td>
+          {{
+            todo.targetDate | date : "dd MMMM, yyyy" : "UTC" : "es" | titlecase
+          }}
+        </td>
+        <td>{{ todo.isDone }}</td>
+        <td>
+          <button (click)="deleteTodo(todo.id)" class="btn btn-danger">
+            Delete
+          </button>
+          <button (click)="modifyTodo(todo.id)" class="btn btn-warning ms-2">
+            Modify
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button (click)="addTodo()" class="btn btn-primary px-3">Add</button>
+</div>

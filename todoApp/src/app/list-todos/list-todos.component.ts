@@ -20,23 +20,32 @@ export class Todo {
 export class ListTodosComponent implements OnInit {
   todos: Todo[] = [];
   message: string = '';
+  username: string | null = null;
   constructor(
     private todoService: TodoDataServiceService,
-    private router: Router
-  ) {}
+    private router: Router,
+    
+    ) {}
+    
+    ngOnInit(): void {
+      this.getUsernameFromSessionStorage();
+      this.refreshTodos();
+    }
 
-  ngOnInit(): void {
-    this.refreshTodos();
-  }
-
-  refreshTodos() {
-    this.todoService.retrieveAllTodos('nosst-bot').subscribe((response) => {
+    getUsernameFromSessionStorage() {
+      this.username = sessionStorage.getItem('authenticateUser')
+      console.log(this.username);
+      
+    }
+    
+    refreshTodos() {
+    this.todoService.retrieveAllTodos(this.username).subscribe((response) => {
       this.todos = response;
     });
   }
 
   deleteTodo(id: number) {
-    this.todoService.deleteTodo('nosst-bot', id).subscribe((response) => {
+    this.todoService.deleteTodo(this.username, id).subscribe((response) => {
       this.message = 'Delete Successful!';
       this.refreshTodos();
     });

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_URL } from 'src/app/app.constants';
+import { API_URL, TODO_JPA_API_URL } from 'src/app/app.constants';
 import { Todo } from 'src/app/list-todos/list-todos.component';
 
 @Injectable({
@@ -9,13 +9,13 @@ import { Todo } from 'src/app/list-todos/list-todos.component';
 export class TodoDataServiceService {
   constructor(private http: HttpClient) {}
 
-  retrieveAllTodos(username: string) {
+  retrieveAllTodos(username: string | null) {
     return this.http.get<Todo[]>(
-      `${API_URL}/users/${username}/todos`
+      `${TODO_JPA_API_URL}/users/${username}/todos`
     );
   }
 
-  deleteTodo(username: string, id: number) {
+  deleteTodo(username: string | null, id: number) {
     return this.http.delete(
       `${API_URL}/users/${username}/todos/${id}`
     );
@@ -23,7 +23,7 @@ export class TodoDataServiceService {
 
   retrieveTodo(username: string, id: number) {
     return this.http.get<Todo>(
-      `${API_URL}/users/${username}{/todos/${id}`
+      `${TODO_JPA_API_URL}/users/${username}{/todos/${id}`
     );
   }
 

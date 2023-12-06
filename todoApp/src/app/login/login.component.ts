@@ -37,9 +37,25 @@ export class LoginComponent {
     }
   }
 
-  handleBasicAuthLogin() {
+  // handleBasicAuthLogin() {
+  //   this.basicAuthenticationService
+  //     .executeAuthenticationService(this.username, this.password)
+  //     .subscribe(
+  //       (data) => {
+  //         console.log(data);
+  //         this.router.navigate(['welcome', this.username]);
+  //         this.invalidLogin = false;
+  //       },
+  //       (error) => {
+  //         console.error(error);
+  //         this.invalidLogin = true;
+  //       }
+  //     );
+  // }
+
+  handleJWTAuthLogin() {
     this.basicAuthenticationService
-      .executeAuthenticationService(this.username, this.password)
+      .executeJWTAuthenticationService(this.username, this.password)
       .subscribe(
         (data) => {
           console.log(data);
@@ -53,3 +69,4 @@ export class LoginComponent {
       );
   }
 }
+
